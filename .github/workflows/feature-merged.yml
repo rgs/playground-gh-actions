@@ -1,0 +1,30 @@
+name: Feature PR merged
+
+on:
+  pull_request:
+    branches:
+      - trunk
+    types:
+      - closed
+
+jobs:
+  update_manifest:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Update manifest file
+        run: |
+          find . -type f | sort > manifest
+      - name: Commit manifest file
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: RGS bot
+          author_email: rgs@consttype.org
+          branch: trunk
+          cwd: "."
+          message: "Update manifest"
+          pull: "NO-PULL"
+          push: true
+          signoff: true
+          add: manifest
