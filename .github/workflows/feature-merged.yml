@@ -26,5 +26,5 @@ jobs:
           message: "Update manifest"
           pull: "NO-PULL"
           push: true
-          signoff: on
+          signoff: false
           add: manifest
