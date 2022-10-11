@@ -1,0 +1,13 @@
+name: Merge to staging
+
+on: workflow_dispatch
+
+jobs:
+  merge_to_staging:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: tukasz/direct-merge-action@master
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          source-branch: trunk
+          target-branch: staging
