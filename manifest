@@ -1,5 +1,6 @@
 .github/workflows/e2e.yml
 .github/workflows/feature-merged.yml
+.github/workflows/release.yml
 README.md
 a.md
 manifest
