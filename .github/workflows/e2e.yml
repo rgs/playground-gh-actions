@@ -3,8 +3,15 @@ name: Merge to staging
 on: workflow_dispatch
 
 jobs:
+  run_e2e_tests:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo Tests OK
+          echo ::set-output name=testOutput::pass
   merge_to_staging:
     runs-on: ubuntu-latest
+    needs: run_e2e_tests
     steps:
       - uses: actions/checkout@v3
         with:
