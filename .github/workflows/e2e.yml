@@ -10,7 +10,7 @@ jobs:
         with:
           ref: staging
           fetch-depth: 0
-      - name: Merge trunk to staging
+      - name: Merge trunk to staging and commit updated version file
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
@@ -19,18 +19,11 @@ jobs:
           git fetch origin trunk
           git merge origin/trunk || exit 1
           git push
-      - name: Create version file
-        run: |
-          git describe --tags > version
-      - name: Commit version file
-        uses: EndBug/add-and-commit@v7
-        with:
-          author_name: RGS bot
-          author_email: rgs@consttype.org
-          branch: staging
-          cwd: "."
-          message: "Update version file"
-          pull: "NO-PULL"
-          push: true
-          signoff: false
-          add: version
+          if [ -f version ];
+          then
+            new_version=$(perl -lpe 's/([0-9]+).*/1+$1/e' version)
+            echo $new_version > version
+            git add version
+            git commit -m 'Update version file'
+            git push 
+          fi
