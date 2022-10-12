@@ -16,5 +16,5 @@ jobs:
           git config user.name "RGS merge bot"
           git config user.email rgs@consttype.org
           git fetch origin trunk
-          git merge --ff-only trunk || exit 1
+          git merge --ff-only origin/trunk || exit 1
           git push
