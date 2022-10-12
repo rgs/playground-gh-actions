@@ -6,8 +6,15 @@ jobs:
   merge_to_staging:
     runs-on: ubuntu-latest
     steps:
-      - uses: tukasz/direct-merge-action@master
+      - uses: actions/checkout@v3
         with:
+          ref: staging
+          fetch-depth: 100
+      - env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          source-branch: trunk
-          target-branch: staging
+        run: |
+          git config user.name "RGS merge bot"
+          git config user.email rgs@consttype.org
+          git fetch origin trunk
+          git merge --ff-only origin/trunk || exit 1
+          git push
