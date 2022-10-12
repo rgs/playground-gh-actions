@@ -21,8 +21,8 @@ jobs:
           git push
           if [ -f version ];
           then
-            new_version=$(perl -lpe 's/([0-9]+).*/1+$1/e' version)
-            echo $new_version > version
+            new_version=$(perl -lpe 's/\.\K([0-9]+).*/1+$1/e' version)
+            echo $new_version.0 > version
             git add version
             git commit -m 'Update version file'
             git push 
