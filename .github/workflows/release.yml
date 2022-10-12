@@ -3,7 +3,7 @@ name: Release to production
 on: workflow_dispatch
 
 jobs:
-  merge_to_staging:
+  merge_to_production:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,4 +16,5 @@ jobs:
         run: |
           git fetch origin staging
           git merge --ff-only origin/staging || exit 1
-          git push
+          git tag $(perl -lpe 's/([0-9]+)-.*/1+$1/e' version)
+          git push --tags origin production
