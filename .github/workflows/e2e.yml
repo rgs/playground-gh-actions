@@ -10,12 +10,27 @@ jobs:
         with:
           ref: staging
           fetch-depth: 100
-      - name: Merge staging to trunk FF only
+      - name: Merge staging to trunk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "RGS merge bot"
           git config user.email rgs@consttype.org
           git fetch origin trunk
-          git merge --ff-only origin/trunk || exit 1
+          git merge origin/trunk || exit 1
           git push
+      - name: Create version file
+        run: |
+          git describe --tags > version
+      - name: Commit version file
+        uses: EndBug/add-and-commit@v7
+        with:
+          author_name: RGS bot
+          author_email: rgs@consttype.org
+          branch: staging
+          cwd: "."
+          message: "Update version file"
+          pull: "NO-PULL"
+          push: true
+          signoff: false
+          add: version
