@@ -10,7 +10,7 @@ jobs:
         with:
           ref: staging
           fetch-depth: 0
-      - name: Merge staging to trunk
+      - name: Merge trunk to staging
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
