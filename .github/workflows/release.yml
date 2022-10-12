@@ -16,5 +16,8 @@ jobs:
         run: |
           git fetch origin staging
           git merge --ff-only origin/staging || exit 1
-          git tag $(perl -lpe 's/([0-9]+)-.*/1+$1/e' version)
+          if [ -f version ];
+          then
+            git tag $(cat version)
+          fi
           git push --tags origin production

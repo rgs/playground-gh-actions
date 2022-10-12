@@ -19,9 +19,10 @@ jobs:
           git fetch origin trunk
           git merge origin/trunk || exit 1
           git push
-      - name: Create version file
+      - name: Update version file
         run: |
-          git describe --tags > version
+          new_version=$(perl -lpe 's/([0-9]+).*/1+$1/e' version)
+          echo $new_version > version
       - name: Commit version file
         uses: EndBug/add-and-commit@v7
         with:
