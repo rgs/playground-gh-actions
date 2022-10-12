@@ -25,5 +25,5 @@ jobs:
             echo $new_version > version
             git add version
             git commit -m 'Update version file'
-            git push 
+            git push
           fi
