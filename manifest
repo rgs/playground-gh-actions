@@ -5,5 +5,4 @@
 .github/workflows/release.yml
 README.md
 manifest
-usage.md
 version
