@@ -1,0 +1,31 @@
+# This workflow is run when a new hotfix PR is open.
+
+name: Open hotfix
+
+on:
+  pull_request:
+    branches:
+      - production
+    types:
+      - opened
+
+jobs:
+  bump_hotfix_version:
+    if: startsWith(github.head_ref, 'hotfix')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: ${{ github.head_ref }}
+      - name: Bump hotfix version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f version ];
+          then
+            new_version=$(perl -lpe 's/\.[0-9]+\.\K([0-9]+)/1+$1/e' version)
+            echo $new_version > version
+            git add version
+            git commit -m 'Update version file'
+            git push
+          fi

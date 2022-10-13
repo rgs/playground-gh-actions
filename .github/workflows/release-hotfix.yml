@@ -1,0 +1,28 @@
+# This workflow is run when a hotfix PR is merged.
+
+name: Release hotfix
+
+on:
+  pull_request:
+    branches:
+      - production
+    types:
+      - closed
+
+jobs:
+  tag_production:
+    if: github.event.pull_request.merged == true && startsWith(github.head_ref, 'hotfix')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: production
+      - name: Tag production with hotfix version
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if [ -f version ];
+          then
+            git tag $(cat version)
+            git push --tags
+          fi
