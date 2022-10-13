@@ -25,6 +25,8 @@ jobs:
           then
             new_version=$(perl -lpe 's/\.[0-9]+\.\K([0-9]+)/1+$1/e' version)
             echo $new_version > version
+            git config user.name "RGS hotfix bot"
+            git config user.email rgs@consttype.org
             git add version
             git commit -m 'Update version file'
             git push

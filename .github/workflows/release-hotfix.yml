@@ -23,6 +23,8 @@ jobs:
         run: |
           if [ -f version ];
           then
+            git config user.name "RGS hotfix bot"
+            git config user.email rgs@consttype.org
             git tag $(cat version)
             git push --tags
           fi
