@@ -1,3 +1,7 @@
+# This workflow is run when a feature branch has been merged to trunk.
+# It updates the manifest file at the root of the tree by adding another
+# commit on trunk if needed.
+
 name: Feature PR merged
 
 on:

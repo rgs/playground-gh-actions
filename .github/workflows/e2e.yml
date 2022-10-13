@@ -1,3 +1,8 @@
+# This workflow is run manually.
+# It simulates a phase where we would run E2E tests and on success merge
+# the trunk to the staging branch. It will also bump the version in the
+# 'version' file with a new commit.
+
 name: Merge to staging
 
 on: workflow_dispatch
