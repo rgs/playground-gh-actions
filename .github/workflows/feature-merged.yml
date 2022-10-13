@@ -20,7 +20,18 @@ jobs:
       - name: Update manifest file
         run: |
           git ls-files | sort > manifest
+      - name: Checks if there are modified files
+        run: |
+          if [[ -z "$(git status --porcelain)" ]];
+          then
+            echo "No files changed"
+            echo W_CHANGES_TO_COMMIT=0 >> $GITHUB_ENV
+          else
+            echo "Found some files changed"
+            echo W_CHANGES_TO_COMMIT=1 >> $GITHUB_ENV
+          fi
       - name: Commit manifest file
+        if: ${{ env.W_CHANGES_TO_COMMIT == 1 }}
         uses: EndBug/add-and-commit@v7
         with:
           author_name: RGS bot

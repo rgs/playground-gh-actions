@@ -15,12 +15,11 @@ jobs:
         with:
           ref: staging
           fetch-depth: 0
-      - id: run_tests
-        run: |
+      - run: |
           echo Tests OK
-          echo ::set-output name=testOutput::pass
+          echo W_E2E_TESTS_PASS=pass >> $GITHUB_ENV
       - name: Merge trunk to staging and commit updated version file
-        if: steps.run_tests.outputs.testOutput == 'pass'
+        if: env.W_E2E_TESTS_PASS == 'pass'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
