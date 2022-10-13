@@ -10,3 +10,5 @@ There are two supplementary workflows for hotfixes PR (that _must_ be PRs to pro
 
 * `open-hotfix`
 * `release-hotfix`
+
+Then the production branch can be merged back to trunk manually.
