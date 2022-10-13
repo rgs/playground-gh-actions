@@ -4,4 +4,6 @@
 .github/workflows/release-hotfix.yml
 .github/workflows/release.yml
 README.md
+docs.md
 manifest
+version
