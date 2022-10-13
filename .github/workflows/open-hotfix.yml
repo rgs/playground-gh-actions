@@ -1,3 +1,5 @@
+# This workflow is run when a new hotfix PR is open.
+
 name: Open hotfix
 
 on:

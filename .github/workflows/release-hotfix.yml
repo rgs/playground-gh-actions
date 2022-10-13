@@ -1,3 +1,5 @@
+# This workflow is run when a hotfix PR is merged.
+
 name: Release hotfix
 
 on:

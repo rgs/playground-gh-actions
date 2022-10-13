@@ -1,3 +1,7 @@
+# This workflow is run manually.
+# It simulates a release action in github, and fast-forwards the
+# production branch to the head of the staging branch.
+
 name: Release to production
 
 on: workflow_dispatch
