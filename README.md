@@ -8,7 +8,8 @@ Workflows are logically run in this order:
 * `e2e` for merging to staging
 * `release` for merging to production
 
-There are two supplementary workflows for hotfixes PR (that _must_ be PRs to production):
+There are two supplementary workflows for hotfix pull requests (that _must_ be
+PRs to production):
 
 * `open-hotfix`
 * `release-hotfix`
