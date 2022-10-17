@@ -24,7 +24,7 @@ jobs:
           git ls-files | sort > manifest
       - name: Checks if there are modified files
         id: checkModified
-        uses: ./.github/composite/modified
+        uses: ./.github/workflows/composite/modified
       - name: Commit manifest file
         if: ${{ steps.checkModified.outputs.modified == 1 }}
         uses: EndBug/add-and-commit@v7
