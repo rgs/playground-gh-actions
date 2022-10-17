@@ -19,6 +19,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Update manifest file
         run: |
+          pwd
+          find . -type f
           git ls-files | sort > manifest
       - name: Checks if there are modified files
         id: checkModified
