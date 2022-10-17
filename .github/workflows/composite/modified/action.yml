@@ -1,0 +1,23 @@
+name: Check modified files
+description: Check if there are modified files in the working tree
+
+outputs:
+  modified:
+    description: "Are there modified files"
+    value: ${{ steps.checkModified.outputs.modified }}
+
+runs:
+  using: "composite"
+  steps:
+    - name: Checks if there are modified files
+      id: checkModified
+      shell: bash
+      run: |
+        if [[ -z "$(git status --porcelain)" ]];
+        then
+          echo "No files changed"
+          echo modified=0 >> $GITHUB_OUTPUT
+        else
+          echo "Found some files changed"
+          echo modified=1 >> $GITHUB_OUTPUT
+        fi
