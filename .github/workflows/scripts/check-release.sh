@@ -4,6 +4,6 @@ then
   echo manifest file is not up to date
   exit 1
 else
-  echo nothing to do
+  echo manifest does not need to be updated
   exit 0
 fi
