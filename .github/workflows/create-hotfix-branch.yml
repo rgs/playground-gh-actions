@@ -1,0 +1,16 @@
+name: Create hotfix branch
+
+on:
+  create:
+    branches:
+      - "hotfix/*"
+
+jobs:
+  check_hotfix_branch_name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          hotfix_version=$( echo $GITHUB_REF | sed s,.*/,, )
+          echo Hotfix version is $hotfix_version
+          echo $hotfix_version | grep '[^0-9.]' && exit 1
