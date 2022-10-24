@@ -14,8 +14,6 @@ jobs:
         with:
           ref: production
           fetch-depth: 0
-      - name: Check release
-        run: bash ./.github/workflows/scripts/check-release.sh
       - name: Merge staging to production and tag
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
