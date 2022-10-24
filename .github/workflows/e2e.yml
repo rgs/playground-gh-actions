@@ -8,7 +8,17 @@ name: Merge to staging
 on: workflow_dispatch
 
 jobs:
+  check_release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: trunk
+          fetch-depth: 0
+      - name: Check release
+        run: bash ./.github/workflows/scripts/check-release.sh
   merge_to_staging:
+    needs: check_release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
