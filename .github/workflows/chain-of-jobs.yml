@@ -1,0 +1,29 @@
+name: Chain of jobs
+
+on: workflow_dispatch
+
+jobs:
+  one:
+    steps:
+      - run: echo one
+  two:
+    needs: one
+    steps:
+      - run: echo two
+  three:
+    needs:
+      - one
+      - two
+    steps:
+      - run: echo three
+  four:
+    needs:
+      - one
+      - three
+    steps:
+      - run: echo four
+  five:
+    if: always()
+    needs: [one, two, three, four]
+    steps:
+      - run: echo five
