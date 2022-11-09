@@ -1,3 +1,4 @@
+.github/workflows/chain-of-jobs.yml
 .github/workflows/composite/modified/action.yml
 .github/workflows/e2e.yml
 .github/workflows/feature-merged.yml

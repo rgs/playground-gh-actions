@@ -1,0 +1,39 @@
+name: Chain of jobs
+
+on: workflow_dispatch
+
+jobs:
+  one:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo one
+  two:
+    runs-on: ubuntu-latest
+    needs: one
+    steps:
+      - run: echo two
+  three:
+    runs-on: ubuntu-latest
+    needs:
+      - one
+      - two
+    steps:
+      - run: echo three
+  four:
+    runs-on: ubuntu-latest
+    needs:
+      - one
+      - three
+    steps:
+      - run: echo four
+  five:
+    runs-on: ubuntu-latest
+    needs: one
+    steps:
+      - run: echo five
+  final:
+    if: always()
+    runs-on: ubuntu-latest
+    needs: [one, two, three, four, five]
+    steps:
+      - run: echo final success
