@@ -17,4 +17,5 @@ jobs:
         run: |
           git fetch origin trunk
           git merge --ff-only origin/trunk
+          git commit --allow-empty -m 'Dummy commit'
           git push origin nightly
