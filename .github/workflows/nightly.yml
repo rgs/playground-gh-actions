@@ -18,3 +18,9 @@ jobs:
           git fetch origin trunk
           git merge --ff-only origin/trunk
           git push origin nightly
+      - name: Dispatch tests
+        uses: aurelien-baudet/workflow-dispatch@v2
+        with:
+          workflow: nightly-tests.yml
+          ref: nightly
+          wait-for-completion: false
