@@ -24,3 +24,4 @@ jobs:
           workflow: nightly-tests.yml
           ref: nightly
           wait-for-completion: false
+          token: ${{ secrets.GITHUB_TOKEN }}
