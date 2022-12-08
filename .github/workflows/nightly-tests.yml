@@ -1,9 +1,7 @@
 name: Nightly tests
 
 on:
-  push:
-    branches:
-      - nightly
+  push
 
 jobs:
   log-run:
