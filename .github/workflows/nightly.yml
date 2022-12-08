@@ -1,0 +1,20 @@
+name: Nightly run
+
+# really supposed to be on a daily schedule
+on: workflow_dispatch
+
+jobs:
+  merge-to-nightly:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ref: nightly
+          fetch-depth: 0
+      - name: Merge trunk to nightly
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git fetch origin trunk
+          git merge --ff-only origin/trunk
+          git push origin nightly

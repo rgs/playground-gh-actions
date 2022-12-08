@@ -1,0 +1,14 @@
+name: Nightly tests
+
+on:
+  push:
+    branches:
+      - nightly
+
+jobs:
+  log-run:
+    runs-on: ubuntu-latest
+    steps:
+      - name: logging
+        run: echo "Logging ${{ github.ref }}-${{ github.sha }}"
+        shell: bash
