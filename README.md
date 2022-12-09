@@ -8,6 +8,11 @@ Workflows are logically run in this order:
 * `e2e` for merging to staging (manual)
 * `release` for merging to production (manual)
 
+Two workflows are related to nightly builds:
+
+* `nightly` to be triggered by cron and update the nightly branch
+* `nightly-tests` is triggered by `nightly`.
+
 There are two supplementary workflows for hotfix pull requests (that _must_ be
 PRs to production):
 
