@@ -31,10 +31,5 @@ jobs:
         with:
           author_name: RGS bot
           author_email: rgs@consttype.org
-          branch: trunk
-          cwd: .
           message: Update manifest
-          pull: NO-PULL
-          push: true
-          signoff: false
           add: manifest
