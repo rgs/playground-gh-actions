@@ -2,10 +2,11 @@
 .github/workflows/composite/modified/action.yml
 .github/workflows/e2e.yml
 .github/workflows/feature-merged.yml
+.github/workflows/nightly-tests.yml
+.github/workflows/nightly.yml
 .github/workflows/open-hotfix.yml
 .github/workflows/release-hotfix.yml
 .github/workflows/release.yml
 .github/workflows/scripts/check-release.sh
 README.md
 manifest
-version
